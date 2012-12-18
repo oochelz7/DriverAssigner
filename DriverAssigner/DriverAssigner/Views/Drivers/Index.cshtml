@@ -1,4 +1,5 @@
-﻿@model List<DriverAssigner.Models.Driver>
+﻿@using DriverAssigner.Models;
+@model List<Driver>
 
 @{
     Layout = null;
@@ -12,8 +13,12 @@
     <title>Drivers</title>
 </head>
 <body>
+    <header><h1>Drivers</h1></header>
     <div>
-        Index
+        @foreach (Driver d in Model){
+            <div>@d.FirstName @d.LastName<br />@d.LastAssignment</div>
+            <hr />
+        }
     </div>
 </body>
 </html>

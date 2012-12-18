@@ -1,0 +1,33 @@
+﻿@model DriverAssigner.Models.Driver
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add a new driver</title>
+</head>
+<body>
+    <header><h1>Add a new driver</h1></header>
+    <form>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+        </div>
+        <button>Submit</button>
+    </form>
+</body>
+</html>

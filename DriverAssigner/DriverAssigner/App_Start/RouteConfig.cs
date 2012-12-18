@@ -12,12 +12,6 @@ namespace DriverAssigner {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "ViewDriver",
-                url: "Drivers/{name}",
-                defaults: new { controller = "Drivers", action = "Details" }
-            );
-
-            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Drivers", action = "Index", id = UrlParameter.Optional }

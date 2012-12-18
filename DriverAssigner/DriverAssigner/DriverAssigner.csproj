@@ -148,7 +148,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Drivers\Index.cshtml" />
-    <Content Include="Views\Drivers\Details.cshtml" />
+    <Content Include="Views\Drivers\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

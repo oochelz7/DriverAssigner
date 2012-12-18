@@ -1,23 +1,36 @@
-﻿using DriverAssigner.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using DriverAssigner.Models;
+using ServiceStack.DesignPatterns.Model;
+using ServiceStack.Redis;
+using ServiceStack.Redis.Generic;
 
 namespace DriverAssigner.Domain {
     public class DriverRepository {
-        public DriverRepository() { }
+        IRedisTypedClient<Driver> redisTypedClient;
+        string KEY = "drivers";
 
-        public Driver Get(string fullName) {
-            return new Driver() { FirstName = "John", LastName = "Smith", LastAssignment = "Midland, TX" };
+        public DriverRepository() {
+            var uri = new Uri(ConfigurationManager.AppSettings["REDISTOGO_URL"]);
+            redisTypedClient = new RedisClient(uri).As<Driver>();
         }
 
-        public void Save(Driver driver) {
-            
+        public IList<Driver> GetAll() {
+            IList<Driver> drivers = redisTypedClient.Lists[KEY].GetAll();
+            ((RedisClient)redisTypedClient.RedisClient).Quit();
+            return drivers;
         }
 
-        public void Delete(Driver driver) {
-
+        public void Push(Driver driver) {
+            redisTypedClient.Lists[KEY].Push(driver);
+            ((RedisClient)redisTypedClient.RedisClient).Quit();
         }
 
-        private string GetKey(Driver driver) {
-            return driver.FirstName + driver.LastName;
+        public Driver Pop() {
+            Driver driver = redisTypedClient.Lists[KEY].Pop();
+            ((RedisClient)redisTypedClient.RedisClient).Quit();
+            return driver;
         }
     }
 }
