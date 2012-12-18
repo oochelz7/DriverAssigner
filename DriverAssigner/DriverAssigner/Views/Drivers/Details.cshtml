@@ -1,0 +1,20 @@
+﻿@model DriverAssigner.Models.Driver
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Model.FirstName @Model.LastName</title>
+</head>
+<body>
+    <header><h1>@Model.FirstName @Model.LastName</h1></header>
+    <div>
+        Last assignment: @Model.LastAssignment
+    </div>
+</body>
+</html>
